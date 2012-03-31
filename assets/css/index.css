@@ -1,0 +1,96 @@
+@import "style.css";
+
+html {
+  overflow-y: visible;
+}
+
+.pin {
+  background-color: #FFF;
+  width: 194px;
+  overflow: hidden;
+  position: absolute;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+  margin: 10px;
+  cursor: pointer;
+}
+
+.pin figcaption {
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.feed {
+  position: absolute;
+  margin: 10px;
+  left: 0;
+  right: 0;
+}
+
+header {
+  background-color: #FAF7F7;
+  box-shadow: 0 1px #FFF inset, 0 1px 2px rgba(34, 25, 25, 0.4);
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+h1, h2 {
+  font-family: Interstate,Helvetica,Arial,sans-serif;
+  margin: 0;
+  font-size: 26px;
+}
+
+h1 {
+  text-align: center;
+}
+
+body {
+  background-color: #F5F4F3;
+}
+
+#lightbox {
+  background-color: rgba(255, 255, 255, 0.95);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  overflow-y: scroll;
+}
+
+.post {
+  width: 768px;
+  margin: 20px auto;
+  padding: 20px 30px 0;
+  background-color: #FFF;
+  box-shadow: 0 3px 8px rgba(34, 25, 25, 0.4);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.comment, #commentEdit {
+  background-color: #FEEF9C;
+  position: absolute;
+  border: 1px solid #FFE572;
+}
+
+.comment {
+  padding: 8px 10px;
+  white-space: pre-wrap;
+}
+
+#commentEdit {
+  padding-bottom: 8px;
+  z-index: 2;
+}
+
+#commentEdit textarea {
+  margin: 10px;
+  display: block;
+  width: 280px;
+}
+
+#commentEdit a {
+  margin-left: 10px;
+}

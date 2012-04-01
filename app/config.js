@@ -13,11 +13,15 @@ require.config({
     jquery: "../assets/js/libs/jquery",
     underscore: "../assets/js/libs/underscore",
     backbone: "../assets/js/libs/backbone",
+    use: "../assets/js/plugins/use"
   },
   
   use: {
     "libs/jquery.imagesloaded": {
-      deps: ["jquery"]
+      deps: ["jquery"],
+      attach: function($) {
+       return $.fn.imagesLoaded;
+      }
     }
   }
 

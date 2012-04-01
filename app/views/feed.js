@@ -1,6 +1,6 @@
 define([
   "jquery",
-  "libs/jquery.imagesloaded",
+  "use!libs/jquery.imagesloaded",
   "backbone",
   "collections/feed",
   "views/pin"

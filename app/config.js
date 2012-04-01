@@ -19,8 +19,8 @@ require.config({
   use: {
     "libs/jquery.imagesloaded": {
       deps: ["jquery"],
-      attach: function($) {
-       return $.fn.imagesLoaded;
+      attach: function() {
+        return $.fn.imagesLoaded;
       }
     }
   }

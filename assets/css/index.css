@@ -1,7 +1,7 @@
 @import "style.css";
 
 html {
-  overflow-y: visible;
+  overflow-y: visible; /* style.css sets this to "scroll", which messes up scrolling */
 }
 
 .pin {
@@ -20,6 +20,8 @@ html {
   margin-top: 8px;
 }
 
+/* The feed div spans exactly the width of the window so we can use it's (inner) width
+   in column layout calculations, automatically accounting for the margin. */
 .feed {
   position: absolute;
   margin: 10px;
@@ -69,28 +71,7 @@ body {
   z-index: 2;
 }
 
-.comment, #commentEdit {
-  background-color: #FEEF9C;
-  position: absolute;
-  border: 1px solid #FFE572;
-}
-
-.comment {
-  padding: 8px 10px;
-  white-space: pre-wrap;
-}
-
-#commentEdit {
-  padding-bottom: 8px;
-  z-index: 2;
-}
-
-#commentEdit textarea {
-  margin: 10px;
-  display: block;
-  width: 280px;
-}
-
-#commentEdit a {
-  margin-left: 10px;
+.post > a:not(:hover) {
+  color: #000;
+  text-decoration: none;
 }

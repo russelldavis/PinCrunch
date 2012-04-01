@@ -20,10 +20,7 @@ function($, _, Backbone) {
     },
 
     render: function() {
-      this.$el.html(this.template({
-        title: this.model.get("title"),
-        content: this.model.get("content")
-      }));
+      this.$el.html(this.template(this.model.toJSON()));
       return this;
     },
 

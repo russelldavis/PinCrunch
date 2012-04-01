@@ -1,11 +1,12 @@
 define([
   "jquery",
+  "libs/jquery.imagesloaded",
   "backbone",
   "collections/feed",
   "views/pin"
 ],
 
-function($, Backbone, Feed, PinView) {
+function($, jqImagesLoaded, Backbone, Feed, PinView) {
 
   var Self = Backbone.View.extend({
     className: 'feed',
@@ -18,23 +19,17 @@ function($, Backbone, Feed, PinView) {
       this.columnWidth = PinView.getWidth();
 
       this.$el.appendTo('body');
-      $(window).resize(_.bind(this.onResize, this));
+      $(window).resize(_.bind(this.doLayout, this));
     },
 
     getNumColumns: function() {
       return Math.floor(this.$el.width() / this.columnWidth);
     },
 
-    onResize: function() {
-      if (this.lastNumColumns && this.lastNumColumns != this.getNumColumns()) {
-        this.render();
-      }
-    },
-
     minIndex: function(list) {
       var minValue = Number.MAX_VALUE;
       var minIndex = null;
-      _.each(list, function(value, index) {
+      _(list).each(function(value, index) {
         if (value < minValue) {
           minIndex = index;
           minValue = value;
@@ -43,34 +38,45 @@ function($, Backbone, Feed, PinView) {
       return minIndex;
     },
 
-    render: function() {
-      this.$el.empty();
-
+    doLayout: function() {
       var numColumns = this.getNumColumns();
+      if (numColumns === this.lastNumColumns) return;
+
       var tops = [];
       _(numColumns).times(function() {
         tops.push(0);
       })
 
       // Add each item to the current shortest column
-      this.collection.each(function(post) {
+      _(this.views).each(function(view) {
         var curColumn = this.minIndex(tops);
         var top = tops[curColumn];
-        var view = new PinView({model: post});
-        view.render().$el
+        view.$el
           .css("top", top)
-          .css("left", curColumn * this.columnWidth)
-          .appendTo(this.$el);
+          .css("left", curColumn * this.columnWidth);
+
         tops[curColumn] = top + view.$el.outerHeight(true);
       }, this);
 
       this.lastNumColumns = numColumns;
+    },
 
-      // TODO - Get rid of this hack. Detect when images finish loading.
-      if (!this.didRender) {
-        this.didRender = true;
-        setTimeout(_.bind(this.render, this), 1000);
-      }
+    render: function() {
+      this.$el.empty();
+      this.views = [];
+
+      this.collection.each(function(post) {
+        var view = new PinView({model: post});
+        view.render();
+        this.views.push(view);
+      }, this);
+
+      var els = $(_(this.views).pluck('el'));
+      els.imagesLoaded().done(_.bind(function() {
+        els.appendTo(this.$el);
+        this.lastNumColumns = null;
+        this.doLayout();
+      }, this));
     }
   });
 

@@ -1,6 +1,6 @@
 define([
   "jquery",
-  "backbone",
+  "backbone"
 ],
 
 function($, Backbone) {

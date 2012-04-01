@@ -44,7 +44,7 @@ function($, jqImagesLoaded, Backbone, Feed, PinView) {
       var tops = [];
       _(numColumns).times(function() {
         tops.push(0);
-      })
+      });
 
       // Add each item to the current shortest column
       _(this.views).each(function(view) {

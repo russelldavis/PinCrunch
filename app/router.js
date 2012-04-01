@@ -9,7 +9,7 @@ function($, Backbone, Photos) {
   var Self = Backbone.Router.extend({
     routes: {
       "": "feed",
-      "feed": "feed",
+      "feed": "feed"
     },
 
     views: {},
@@ -17,7 +17,7 @@ function($, Backbone, Photos) {
     getView: function(name) {
       var view = this.views[name];
       if (!view) {
-        view = this.views[name] = new (require("views/" + name));
+        view = this.views[name] = new (require("views/" + name))();
       }
       return view;
     },

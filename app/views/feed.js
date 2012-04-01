@@ -16,7 +16,6 @@ function($, jqImagesLoaded, Backbone, Feed, PinView) {
       this.collection = new Feed();
       this.collection.bind('reset', this.render, this);
 
-      this.columnWidth = PinView.getWidth();
 
       this.$el.appendTo('body');
       $(window).resize(_.bind(this.doLayout, this));
@@ -74,6 +73,7 @@ function($, jqImagesLoaded, Backbone, Feed, PinView) {
       var els = $(_(this.views).pluck('el'));
       els.imagesLoaded().done(_.bind(function() {
         els.appendTo(this.$el);
+        this.columnWidth = els.outerWidth(true);
         this.lastNumColumns = null;
         this.doLayout();
       }, this));

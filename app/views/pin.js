@@ -29,15 +29,6 @@ function($, Backbone, PostView, Post) {
       }));
       return this;
     }
-  },
-  {
-    getWidth: function() {
-      var sizingEl = new Self({model: new Post()}).render().$el;
-      sizingEl.appendTo($('body'));
-      var width = sizingEl.outerWidth(true);
-      sizingEl.remove();
-      return width;
-    }
   });
 
   return Self;

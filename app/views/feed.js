@@ -72,6 +72,7 @@ function($, jqImagesLoaded, Backbone, Feed, PinView) {
 
       var els = $(_(this.views).pluck('el'));
       els.imagesLoaded().done(_.bind(function() {
+        $('#loading').hide();
         els.appendTo(this.$el);
         this.columnWidth = els.outerWidth(true);
         this.lastNumColumns = null;

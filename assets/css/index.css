@@ -1,5 +1,13 @@
 @import "style.css";
 
+#loading {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}
+
 html {
   overflow-y: visible; /* style.css sets this to "scroll", which messes up scrolling */
 }
